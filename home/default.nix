@@ -14,7 +14,6 @@
     ./rofi
     ./systemd
     ./tmux
-    ./waybar
     ./wpaperd
     ./xdg-desktop-portal
     ./yazi
