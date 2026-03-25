@@ -2,22 +2,6 @@
 
 NixOS + Home Manager configuration for host-specific systems and user-level dotfiles.
 
-## Structure
-
-- `flake.nix`: entry point and host outputs.
-- `hosts/`: host-specific NixOS config (`nixos`, `vm`).
-- `modules/`: reusable NixOS modules (bootloader, display manager, system, Hyprland enablement).
-- `users/`: user-level system and Home Manager entry files.
-- `home/`: Home Manager modules and dotfiles.
-
-## Home Manager Layout
-
-- `home/core.nix`: base user settings.
-- `home/hyprland/default.nix`: deploys Hyprland config and scripts.
-- `home/hyprland/config/`: static Hyprland config files.
-- `home/hyprland/scripts/`: Hyprland helper scripts.
-- `home/vsCodium/default.nix`: VSCodium user configuration.
-
 ## Hyprland Behavior
 
 `home/hyprland/default.nix` writes Hyprland files under `.config/hypr`.
@@ -45,3 +29,19 @@ sudo nixos-rebuild switch --flake .#vm
 
 - Host-specific values (for example `hyprMainMod`) are passed through `home-manager.extraSpecialArgs` in `flake.nix`.
 - User-level programs should live in Home Manager modules under `home/` and be imported by `users/<name>/home.nix`.
+
+## Structure
+
+- `flake.nix`: entry point and host outputs.
+- `hosts/`: host-specific NixOS config (`nixos`, `vm`).
+- `modules/`: reusable NixOS modules (bootloader, display manager, system, Hyprland enablement).
+- `users/`: user-level system and Home Manager entry files.
+- `home/`: Home Manager modules and dotfiles.
+
+## Home Manager Layout
+
+- `home/core.nix`: base user settings.
+- `home/hyprland/default.nix`: deploys Hyprland config and scripts.
+- `home/hyprland/config/`: static Hyprland config files.
+- `home/hyprland/scripts/`: Hyprland helper scripts.
+- `home/vsCodium/default.nix`: VSCodium user configuration.

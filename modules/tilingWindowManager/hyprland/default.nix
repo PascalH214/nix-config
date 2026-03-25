@@ -1,6 +1,3 @@
 { ... }: {
-  programs = {
-    kitty.enable = true;
-    hyprland.enable = true;
-  };
+  programs.hyprland.enable = true;
 }

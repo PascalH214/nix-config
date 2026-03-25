@@ -12,4 +12,6 @@
       email = "pascal02012004@freenet.de";
     };
   };
+
+  programs.kitty.enable = true;
 }
