@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ../../home/core.nix
+    ../../home/hyprland
   ];
 
   programs.git.settings.user = {
