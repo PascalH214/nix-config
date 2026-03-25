@@ -12,6 +12,7 @@
     ./Kvantum
     ./lsd
     ./nvim
+    ./oh_my_posh
     ./printers_scanners
     ./qt6ct
     ./rofi
@@ -20,6 +21,7 @@
     ./wpaperd
     ./xdg-desktop-portal
     ./yazi
+    ./zoxide
   ];
 
 }
