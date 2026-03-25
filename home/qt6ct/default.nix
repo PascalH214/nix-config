@@ -4,5 +4,5 @@
     recursive = true;
   };
 
-  home.packages = [ pkgs.qt6ct ];
+  home.packages = [ pkgs.qt6Packages.qt6ct ];
 }
