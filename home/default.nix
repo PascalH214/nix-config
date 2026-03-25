@@ -18,4 +18,5 @@
     ./xdg-desktop-portal
     ./yazi
   ];
+
 }
