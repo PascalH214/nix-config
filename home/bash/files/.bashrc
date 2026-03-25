@@ -22,6 +22,3 @@ fi
 # sdkman
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-source -- ~/.local/share/blesh/ble.sh
-bleopt color_scheme=catppuccin_mocha
