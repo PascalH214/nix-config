@@ -12,7 +12,7 @@
     };
   };
 
-  home.file."~/.config/hypr/hyprland.conf".text = ''
+  home.file.".config/hypr/hyprland.conf".text = ''
     $terminal = kitty
     $fileManager = yazi
     $menu = ags request toggle-launcher
