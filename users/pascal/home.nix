@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ../../home/core.nix
-    ../../home/hyprland
+    ../../home
     ../../home/vsCodium
   ];
 
