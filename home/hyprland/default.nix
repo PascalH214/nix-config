@@ -29,7 +29,6 @@ in {
         # navigation
         source=~/.config/hypr/keybindings.conf
         source=~/.config/hypr/input.conf         # User-Configurations
-        source=~/.config/hypr/devices.conf       # User-Configurations
         source=~/.config/hypr/layout.conf
 
         # style
