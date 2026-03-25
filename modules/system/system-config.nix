@@ -1,8 +1,4 @@
 { pkgs, lib, ... }: {
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
-
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Berlin";
@@ -27,11 +23,6 @@
     variant = "";
   };
 
-  services = {
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-  };
-
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -40,6 +31,4 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
-  programs.hyprland.enable = true;
 }

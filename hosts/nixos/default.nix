@@ -9,6 +9,10 @@
   imports = [
     ./hardware-configuration.nix
 
+    ../../modules/bootloader/grub
+    ../../modules/displayManager/gdm
+    ../../modules/desktopManager/gnome
+    ../../modules/tilingWindowManager/hyprland
     ../../modules/system
   ];
 
