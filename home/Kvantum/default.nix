@@ -4,5 +4,5 @@
     recursive = true;
   };
 
-  home.packages = [ pkgs.kvantum ];
+  home.packages = [ pkgs.themechanger ];
 }
