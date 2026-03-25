@@ -41,7 +41,7 @@
     general {
       layout = master
     }
-  ''
+  '';
 
   wayland.windowManager.hyprland.settings = {
     "$terminal" = "kitty";
