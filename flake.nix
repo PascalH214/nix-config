@@ -59,7 +59,12 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
 
-              home-manager.extraSpecialArgs = inputs // specialArgs;
+              home-manager.extraSpecialArgs =
+                inputs //
+                specialArgs //
+                {
+                  hyprMainMod = "SHIFT_R ALT_R";
+                };
               home-manager.users.${username} = import ./users/${username}/home.nix;
             }
           ];
