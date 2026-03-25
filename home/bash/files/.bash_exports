@@ -1,0 +1,49 @@
+if [[ -z "${TZ:-}" ]]; then
+  if [[ -f /etc/timezone ]]; then
+    export TZ="$(cat /etc/timezone)"
+  else
+    export TZ="UTC"
+  fi
+fi
+
+export PATH=$PATH:$HOME/bin:$HOME/Applications/clion/bin:$HOME/.local/share/nvim/mason/bin:$HOME/.local/bin
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export EDITOR=nvim
+export DISABLE_AUTO_TITLE='true'
+export SUDO_EDITOR='nvim'
+
+if [[ -d /opt/rocm ]]; then
+  # AMD ROCm (Radeon Open Compute) setup
+  export ROCM_PATH=/opt/rocm
+  export PATH=$PATH:/opt/rocm/bin
+  export LD_LIBRARY_PATH=/opt/rocm/lib:$LD_LIBRARY_PATH
+  export HSA_OVERRIDE_GFX_VERSION=11.0.0
+  export ROCM_VISIBLE_DEVICES=0
+fi
+
+if command -v gamemoderun >/dev/null 2>&1; then
+  # Gaming environment variables
+  export GAMEMODE=1
+  export GAMEMODERUNEXEC=env
+  ## export DXVK_HUD=fps,memory
+  ## export DXVK_ASYNC=1
+  export VKD3D_FEATURE_LEVEL=12_1
+  export WINE_CPU_TOPOLOGY=4:2
+  export PROTON_NO_ESYNC=0
+
+  if [[ -d /opt/rocm ]]; then
+    # AMD GPU optimizations
+    export RADV_PERFTEST=aco,navi10_ngg_culling
+    export MESA_DRIVER=radeonsi
+  fi
+fi
+
+export MANPAGER="/usr/bin/less -s -M +Gg"
+export LESS_TERMCAP_mb=$'\e[1;31m'      # begin bold
+export LESS_TERMCAP_md=$'\e[1;34m'      # begin blink
+export LESS_TERMCAP_so=$'\e[01;45;37m'  # begin reverse video
+export LESS_TERMCAP_us=$'\e[01;36m'     # begin underline
+export LESS_TERMCAP_me=$'\e[0m'         # reset bold/blink
+export LESS_TERMCAP_se=$'\e[0m'         # reset reverse video
+export LESS_TERMCAP_ue=$'\e[0m'         # reset underline
+export GROFF_NO_SGR=1                   # for konsole

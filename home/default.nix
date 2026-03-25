@@ -1,6 +1,8 @@
 { ... }: {
   imports = [
     ./core.nix
+    ./bash
+    ./wallpaper
     ./hypr
     ./ags
     ./btop
