@@ -2,6 +2,7 @@
   imports = [
     ./core.nix
     ./bash
+    ./blesh
     ./wallpaper
     ./hypr
     ./ags
