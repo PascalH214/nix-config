@@ -18,5 +18,8 @@ fi
 if [[ $- == *i* ]] && command -v blesh-share >/dev/null 2>&1; then
 	source -- "$(blesh-share)/ble.sh" --attach=none
 	[[ -n ${BLE_VERSION-} ]] || ble-attach
-	bleopt color_scheme=catppuccin_mocha
+	# Some blesh versions do not provide the color_scheme option.
+	if bleopt -p color_scheme >/dev/null 2>&1; then
+		bleopt color_scheme=catppuccin_mocha
+	fi
 fi
