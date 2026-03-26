@@ -4,7 +4,7 @@
     ./bash
     ./blesh
     ./wallpaper
-    ./hypr
+    ./hyprland
     ./ags
     ./btop
     ./fastfetch
@@ -22,6 +22,8 @@
     ./xdg-desktop-portal
     ./yazi
     ./zoxide
+    ./vsCodium
+    ./firefox
   ];
 
 }
