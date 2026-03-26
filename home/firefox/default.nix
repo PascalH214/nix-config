@@ -1,8 +1,16 @@
 { pkgs, ... }: {
   programs.firefox = {
     enable = true;
-    profiles.default.extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-      ublock-origin
-    ];
+    profiles.default = {
+      settings = {
+        extensions.autoDisableScope = 0;
+      };
+      extensions = {
+        packages = with pkgs.nur.repos.rycee.firefox-addons; [
+          ublock-origin
+          bitwarden
+        ];
+      };
+    };
   };
 }

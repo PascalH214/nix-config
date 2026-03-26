@@ -5,5 +5,6 @@
     neovim
     git
     nodejs_24
+    nil
   ];
 }

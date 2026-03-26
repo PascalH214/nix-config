@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nur.url = "github:nix-community/NUR";
     ags.url = "github:Aylur/ags";
     ags.inputs.nixpkgs.follows = "nixpkgs";
     astal.url = "github:Aylur/astal";
@@ -15,6 +16,7 @@
   outputs = inputs @ {
     self,
     nixpkgs,
+    nur,
     home-manager,
     ...
   }: {
@@ -30,6 +32,16 @@
           inherit system;
 
           modules = [
+            {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  nur = import inputs.nur {
+                    nurpkgs = prev;
+                    pkgs = prev;
+                  };
+                })
+              ];
+            }
             ./hosts/nixos
             ./users/${username}/nixos.nix
 
@@ -63,6 +75,18 @@
           inherit system;
 
           modules = [
+            {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  nur = import inputs.nur {
+                    nurpkgs = prev;
+                    pkgs = prev;
+                  };
+                })
+              ];
+              nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+            }
+
             ./hosts/vm
             ./users/${username}/nixos.nix
 
