@@ -1,0 +1,3 @@
+[submodule "ags_config"]
+	path = ./home/ags/config
+	url = ../ags_config

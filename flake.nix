@@ -4,6 +4,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    ags.url = "github:Aylur/ags";
+    ags.inputs.nixpkgs.follows = "nixpkgs";
+    astal.url = "github:Aylur/astal";
+    astal.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -39,6 +43,7 @@
                 specialArgs //
                 {
                   hyprMainMod = "SUPER";
+                  inherit inputs;
                   inherit pkgsUnstable;
                 };
               home-manager.users.${username} = import ./users/${username}/home.nix;
@@ -70,6 +75,7 @@
                 specialArgs //
                 {
                   hyprMainMod = "SHIFT_R ALT_R";
+                  inherit inputs;
                   inherit pkgsUnstable;
                 };
               home-manager.users.${username} = import ./users/${username}/home.nix;

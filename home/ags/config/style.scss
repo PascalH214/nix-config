@@ -1,0 +1,290 @@
+// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
+
+$base-color: rgb(30, 30, 46);
+$mantle-color: rgb(24, 24, 37);
+
+$text-color: rgb(205, 214, 244);
+
+$surface-color-1: rgb(69, 71, 90);
+$surface-color-0: rgb(49, 50, 68);
+
+$overlay-color-0: rgb(108, 112, 134);
+
+$flamingo-color: rgb(242, 205, 205);
+$pink-color: rgb(245, 194, 231);
+$mauve-color: rgb(203, 166, 247);
+$red-color: rgb(243, 139, 168);
+$green-color: rgb(166, 227, 161);
+$lavender-color: rgb(180, 190, 254);
+
+$button-width: 48px;
+$button-height: 16px;
+
+@mixin border($width, $color) {
+  border-style: solid;
+  border-width: $width;
+  border-color: $color;
+}
+
+@mixin bar-panel {
+  background-color: $base-color;
+
+  padding: 6px 12px;
+  border-radius: 8px;
+
+  font-size: larger;
+  color: $text-color;
+
+  @include border(0.4px, $overlay-color-0);
+}
+
+@mixin transparent-bounded($radius: 8px) {
+  @include border(1px, transparent);
+  border-radius: $radius;
+  background-color: transparent;
+}
+
+* {
+  font-family: monospace;
+}
+
+window.PowerMenu, window.Launcher {
+  background-color: rgba(0, 0, 0, 0.4);
+
+  color: $text-color;
+}
+
+.launcher-dialog, .powermenu-dialog {
+  background-color: $base-color;
+
+  padding: 16px;
+
+  border-radius: 16px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: $lavender-color;
+}
+
+window.Bar {
+  background: transparent;
+
+  padding: 8px 16px 0px 16px;
+
+  .hw-info, .workspaces, .info-center {
+    @include bar-panel;
+  }
+
+  .workspaces {
+    button {
+      min-width: $button-width;
+      min-height: $button-height;
+
+      margin: 0 2px 0 2px;
+      padding: 0px;
+
+      background-color: $base-color;
+
+      border-radius: $button-height;
+
+      &:hover {
+        background-color: $overlay-color-0;
+      }
+
+      &.focused {
+        background-color: $surface-color-0;
+      }
+    }
+  }
+
+  .info-center {
+    .multimedia {
+      margin-right: 8px;
+
+      :first-child {
+        margin-left: 0px;
+      }
+
+      * {
+        margin: 0px 4px;
+      }
+
+      :last-child {
+        margin-right: 0px;
+      }
+    }
+
+    .time-info {
+      .time {
+        color: $flamingo-color;
+      }
+      .date {
+        color: $pink-color;
+      }
+      .uptime {
+        color: $mauve-color;
+      }
+    }
+
+    .shutdown-button {
+      background-color: $red-color;
+
+      margin: 0 0 0 12px;
+      padding: 4px;
+
+      min-width: 24px;
+      min-height: 24px;
+
+      border-radius: 8px;
+
+      &:hover {
+        background-color: rgba($red-color, 0.8);
+      }
+    }
+  }
+
+  .dividing-line {
+    background-color: $surface-color-0;
+    min-width: 2px;
+  }
+
+  .icon-label {
+    margin: 0px 12px;
+
+    image {
+      margin-right: 8px;
+    }
+  }
+}
+
+window.PowerMenu {
+  .power-menu-button {
+    margin: 0px 8px;
+
+    &:first-child {
+      margin-left: 0px;
+    }
+
+    &:last-child {
+      margin-right: 0px;
+    }
+
+    image {
+      border-radius: 16px;
+
+      background-color: $mantle-color;
+    }
+
+    &.focus image {
+      background-color: $lavender-color;
+    }
+
+    label {
+      margin-top: 4px;
+    }
+  }
+}
+
+window.Launcher {
+  .launcher-dialog {
+    min-height: 300px;
+
+    .launcher-entry {
+      margin-bottom: 16px;
+
+      background-color: $mantle-color;
+      color: $text-color;
+      background-image: none;
+
+      border: none;
+      outline: none;
+      box-shadow: none;
+
+      text {
+        color: $text-color;
+      }
+    }
+
+    .tabs {
+      .tab {
+        @include transparent-bounded;
+
+        padding: 4px 10px;
+      }
+
+      .tab.active {
+        label {
+          color: $lavender-color;
+
+          text-decoration: underline
+        }
+      }
+    }
+
+    .launcher-row {
+      @include transparent-bounded;
+    }
+
+    .launcher-row.selected {
+      background-color: $surface-color-0;
+    }
+
+    .launcher-item {
+      border-radius: 8px;
+
+      background-color: transparent;
+
+      image {
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+window.NotificationContainer {
+  margin: 8px 16px;
+
+  .notification {
+    background-color: $base-color;
+
+    padding: 24px;
+
+    border-left-style: solid;
+    border-right-style: solid;
+    border-width: 2px;
+    border-color: $lavender-color;
+
+    image {
+      border-radius: 16px;
+
+      margin: 0px 16px 0px 0px;
+    }
+
+    .title {
+      margin-bottom: 4px;
+
+      &.low {
+        border-color: $green-color;
+      }
+
+      &.normal {
+        color: $lavender-color;
+      }
+
+      &.critical {
+        color: $red-color;
+      }
+    }
+
+    &:first-child {
+      border-top-style: solid;
+      border-top-left-radius: 32px;
+      border-top-right-radius: 32px;
+    }
+
+    &:last-child {
+      border-bottom-style: solid;
+      border-bottom-left-radius: 32px;
+      border-bottom-right-radius: 32px;
+    }
+  }
+}

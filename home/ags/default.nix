@@ -1,10 +1,12 @@
-{ pkgs, ... }: {
-  xdg.configFile."ags" = {
-    source = ./config;
-    recursive = true;
-  };
+{ inputs, pkgs, ... }: {
+  imports = [inputs.ags.homeManagerModules.default];
 
-  home.packages = [
-    (if pkgs ? ags then pkgs.ags else pkgs.aylurs-gtk-shell)
-  ];
+  programs.ags = {
+    enable = true;
+    configDir = ./config;
+    extraPackages = with pkgs; [
+      inputs.astal.packages.${pkgs.system}.battery
+      fzf
+    ];
+  };
 }
