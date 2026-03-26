@@ -2,6 +2,21 @@
 
 NixOS + Home Manager configuration for host-specific systems and user-level dotfiles.
 
+## Clone
+
+Clone with submodules (required for `home/ags/config`):
+
+```bash
+git clone --recurse-submodules git@github.com:PascalH214/nix-config.git
+cd nix-config
+```
+
+If you already cloned without submodules:
+
+```bash
+git submodule update --init --recursive
+```
+
 ## Hyprland Behavior
 
 `home/hyprland/default.nix` writes Hyprland files under `.config/hypr`.
@@ -12,6 +27,12 @@ NixOS + Home Manager configuration for host-specific systems and user-level dotf
 - `home/hyprland/scripts` is linked recursively and marked executable.
 
 ## Apply Configuration
+
+Update flake inputs first:
+
+```bash
+nix flake update
+```
 
 For your main host:
 
