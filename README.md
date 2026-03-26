@@ -37,13 +37,13 @@ nix flake update
 For your main host:
 
 ```bash
-sudo nixos-rebuild switch --flake .#nixos
+sudo nixos-rebuild switch --flake '.?submodules=1#nixos'
 ```
 
 For the VM host:
 
 ```bash
-sudo nixos-rebuild switch --flake .#vm
+sudo nixos-rebuild switch --flake '.?submodules=1#vm'
 ```
 
 ## Notes
