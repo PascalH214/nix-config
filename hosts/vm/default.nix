@@ -7,6 +7,8 @@
   ...
 }: {
   imports = [
+    ../common.nix
+
     ./hardware-configuration.nix
 
     ../../modules/displayManager/gdm
@@ -18,6 +20,8 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
+
+  nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "vm-nixos";
 

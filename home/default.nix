@@ -24,6 +24,7 @@
     ./zoxide
     ./vsCodium
     ./firefox
+    ./github-copilot-cli
   ];
 
 }

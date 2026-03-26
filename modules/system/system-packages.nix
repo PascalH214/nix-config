@@ -4,5 +4,6 @@
   environment.systemPackages = with pkgs; [
     neovim
     git
+    nodejs_24
   ];
 }

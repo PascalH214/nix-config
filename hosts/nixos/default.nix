@@ -7,6 +7,8 @@
   ...
 }: {
   imports = [
+    ../common.nix
+
     ./hardware-configuration.nix
 
     ../../modules/displayManager/gdm
