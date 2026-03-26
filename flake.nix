@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -17,10 +18,12 @@
       nixos = let
         username = "pascal";
         specialArgs = {inherit username;};
+        system = "x86_64-linux";
+        pkgsUnstable = import inputs."nixpkgs-unstable" {inherit system;};
       in
         nixpkgs.lib.nixosSystem {
           inherit specialArgs;
-          system = "x86_64-linux";
+          inherit system;
 
           modules = [
             ./hosts/nixos
@@ -36,6 +39,7 @@
                 specialArgs //
                 {
                   hyprMainMod = "SUPER";
+                  inherit pkgsUnstable;
                 };
               home-manager.users.${username} = import ./users/${username}/home.nix;
             }
@@ -45,10 +49,12 @@
       vm = let
         username = "pascal";
         specialArgs = {inherit username;};
+        system = "x86_64-linux";
+        pkgsUnstable = import inputs."nixpkgs-unstable" {inherit system;};
       in
         nixpkgs.lib.nixosSystem {
           inherit specialArgs;
-          system = "x86_64-linux";
+          inherit system;
 
           modules = [
             ./hosts/vm
@@ -64,6 +70,7 @@
                 specialArgs //
                 {
                   hyprMainMod = "SHIFT_R ALT_R";
+                  inherit pkgsUnstable;
                 };
               home-manager.users.${username} = import ./users/${username}/home.nix;
             }

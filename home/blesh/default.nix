@@ -1,5 +1,5 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    blesh
+{pkgsUnstable, ...}: {
+  home.packages = [
+    pkgsUnstable.blesh
   ];
 }

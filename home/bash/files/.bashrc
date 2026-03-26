@@ -7,6 +7,8 @@ echo -e "Don't forget about:"
 echo -e "\033[38;2;180;190;254mman (1)\033[0m    - an interface to the system reference manuals"
 echo -e "\033[38;2;180;190;254mwhatis (1)\033[0m - display one-line manual page descriptions\n"
 
+set -o vi
+
 if [[ $(which oh-my-posh) ]]; then
 	eval "$(oh-my-posh init bash --config ~/.poshthemes/catppuccin_mocha.omp.json)"
 fi
