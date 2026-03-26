@@ -9,12 +9,15 @@
   imports = [
     ./hardware-configuration.nix
 
-    ../../modules/bootloader/grub
     ../../modules/displayManager/gdm
     ../../modules/desktopManager/gnome
     ../../modules/tilingWindowManager/hyprland
     ../../modules/system
   ];
+
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
 
   networking.hostName = "vm-nixos";
 

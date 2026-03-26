@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   imports = [
     ../../home
-    ../../home/vsCodium
   ];
 
   programs.git = {

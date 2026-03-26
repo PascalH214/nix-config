@@ -9,12 +9,14 @@
   imports = [
     ./hardware-configuration.nix
 
-    ../../modules/bootloader/grub
     ../../modules/displayManager/gdm
     ../../modules/desktopManager/gnome
     ../../modules/tilingWindowManager/hyprland
     ../../modules/system
   ];
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos";
 
