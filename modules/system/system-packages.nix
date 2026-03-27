@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -6,5 +6,8 @@
     git
     nodejs_24
     nil
+    adw-gtk3
+    gnome-themes-extra
+    dconf
   ];
 }
