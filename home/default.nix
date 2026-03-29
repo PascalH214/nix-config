@@ -6,7 +6,6 @@
   imports = [
     ./core.nix
     ./bash
-    ./wallpaper
     ./hyprland
     ./ags
     ./btop

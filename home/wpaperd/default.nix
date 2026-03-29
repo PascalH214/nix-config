@@ -1,8 +1,15 @@
 { pkgs, ... }: {
-  xdg.configFile."wpaperd" = {
-    source = ./config;
+  home.file.".wallpaper" = {
+    source = ./wallpaper;
     recursive = true;
   };
 
-  home.packages = [ pkgs.wpaperd ];
+  services.wpaperd = {
+    enable = true;
+    settings = {
+      "re:.*" = {
+        path = "/home/pascal/.wallpaper/lake_ultrawide.png";
+      };
+    };
+  };
 }
