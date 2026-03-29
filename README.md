@@ -21,10 +21,10 @@ git submodule update --init --recursive
 
 `home/hyprland/default.nix` writes Hyprland files under `.config/hypr`.
 
-- Top-level config files from `home/hyprland/config` are linked.
-- `hyprland.conf` is generated from Nix so `$mainMod` can be set per host through `hyprMainMod` in `flake.nix`.
-- `home/hyprland/config/keybindings` is linked recursively.
-- `home/hyprland/scripts` is linked recursively and marked executable.
+* Top-level config files from `home/hyprland/config` are linked.
+* `hyprland.conf` is generated from Nix so `$mainMod` can be set per host through `hyprMainMod` in `flake.nix`.
+* `home/hyprland/config/keybindings` is linked recursively.
+* `home/hyprland/scripts` is linked recursively and marked executable.
 
 ## Apply Configuration
 
@@ -46,23 +46,102 @@ For the VM host:
 sudo nixos-rebuild switch --flake '.?submodules=1#vm'
 ```
 
+## Garbage Collection (Delete Old Builds)
+
+Delete system generations older than a specified time:
+
+```bash
+sudo nix-collect-garbage --delete-older-than 7d
+```
+
+Delete Home Manager generations older than a specified time:
+
+```bash
+home-manager expire-generations "-7 days"
+```
+
+Run garbage collection to free space:
+
+```bash
+sudo nix-store --gc
+```
+
+## Short-Lived Builds for Testing
+
+Build without creating a persistent system generation:
+
+```bash
+sudo nixos-rebuild build --flake '.?submodules=1#nixos'
+```
+
+Run the build temporarily (no boot entry created):
+
+```bash
+sudo ./result/bin/switch-to-configuration test
+```
+
+Build a flake output directly:
+
+```bash
+nix build '.#nixosConfigurations.nixos.config.system.build.toplevel'
+```
+
+Remove build result after testing:
+
+```bash
+rm -rf result
+```
+
+## Delete All Previous Builds Except Newest
+
+Delete all old system generations:
+
+```bash
+sudo nixos-rebuild switch --flake '.?submodules=1#nixos'
+sudo nix-collect-garbage -d
+```
+
+Delete all old Home Manager generations:
+
+```bash
+home-manager expire-generations 0
+```
+
+Run garbage collection:
+
+```bash
+sudo nix-store --gc
+```
+
+## Optional: Automatic Cleanup
+
+Add to NixOS configuration:
+
+```nix
+nix.gc = {
+  automatic = true;
+  dates = "weekly";
+  options = "--delete-older-than 7d";
+};
+```
+
 ## Notes
 
-- Host-specific values (for example `hyprMainMod`) are passed through `home-manager.extraSpecialArgs` in `flake.nix`.
-- User-level programs should live in Home Manager modules under `home/` and be imported by `users/<name>/home.nix`.
+* Host-specific values (for example `hyprMainMod`) are passed through `home-manager.extraSpecialArgs` in `flake.nix`.
+* User-level programs should live in Home Manager modules under `home/` and be imported by `users/<name>/home.nix`.
 
 ## Structure
 
-- `flake.nix`: entry point and host outputs.
-- `hosts/`: host-specific NixOS config (`nixos`, `vm`).
-- `modules/`: reusable NixOS modules (bootloader, display manager, system, Hyprland enablement).
-- `users/`: user-level system and Home Manager entry files.
-- `home/`: Home Manager modules and dotfiles.
+* `flake.nix`: entry point and host outputs.
+* `hosts/`: host-specific NixOS config (`nixos`, `vm`).
+* `modules/`: reusable NixOS modules (bootloader, display manager, system, Hyprland enablement).
+* `users/`: user-level system and Home Manager entry files.
+* `home/`: Home Manager modules and dotfiles.
 
 ## Home Manager Layout
 
-- `home/core.nix`: base user settings.
-- `home/hyprland/default.nix`: deploys Hyprland config and scripts.
-- `home/hyprland/config/`: static Hyprland config files.
-- `home/hyprland/scripts/`: Hyprland helper scripts.
-- `home/vsCodium/default.nix`: VSCodium user configuration.
+* `home/core.nix`: base user settings.
+* `home/hyprland/default.nix`: deploys Hyprland config and scripts.
+* `home/hyprland/config/`: static Hyprland config files.
+* `home/hyprland/scripts/`: Hyprland helper scripts.
+* `home/vsCodium/default.nix`: VSCodium user configuration.
