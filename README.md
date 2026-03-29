@@ -68,6 +68,13 @@ sudo nix-store --gc
 
 ## Short-Lived Builds for Testing
 
+Build and run without persistent system generation:
+
+```bash
+sudo nixos-rebuild build --flake '.?submodules=1#nixos' &&
+sudo ./result/bin/switch-to-configuration test
+```
+
 Build without creating a persistent system generation:
 
 ```bash

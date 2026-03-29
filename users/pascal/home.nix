@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, pkgsUnstable, inputs, ...}: {
   imports = [
     ../../home
   ];
@@ -13,4 +13,11 @@
       };
     };
   };
+
+  home.packages = with pkgs; [
+    github-copilot-cli
+    zoxide
+  ] ++ (with pkgsUnstable; [
+    blesh
+  ]);
 }

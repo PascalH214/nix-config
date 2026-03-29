@@ -6,14 +6,12 @@
   imports = [
     ./core.nix
     ./bash
-    ./blesh
     ./wallpaper
     ./hyprland
     ./ags
     ./btop
     ./fastfetch
     ./firefox
-    ./github-copilot-cli
     ./gnome
     ./kitty
     ./Kvantum
@@ -29,6 +27,5 @@
     ./wpaperd
     ./xdg-desktop-portal
     ./yazi
-    ./zoxide
   ];
 }
