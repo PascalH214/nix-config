@@ -21,7 +21,7 @@
     ./rofi
     ./systemd
     ./tmux
-    ./vsCodium
+    ./vsCode
     ./wpaperd
     ./xdg-desktop-portal
     ./yazi
