@@ -8,6 +8,9 @@
     ./ags
     ./btop
     ./fastfetch
+    ./firefox
+    ./github-copilot-cli
+    ./gnome
     ./kitty
     ./Kvantum
     ./lsd
@@ -18,13 +21,11 @@
     ./rofi
     ./systemd
     ./tmux
+    ./vsCodium
     ./wpaperd
     ./xdg-desktop-portal
     ./yazi
     ./zoxide
-    ./vsCodium
-    ./firefox
-    ./github-copilot-cli
   ];
 
 }
