@@ -1,10 +1,6 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [
-    oh-my-posh
-  ];
-
-  home.file.".poshthemes" = {
-    source = ./poshthemes;
-    recursive = true;
+  programs.oh-my-posh = {
+    enable = true;
+    useTheme = "catppuccin_mocha";
   };
 }
