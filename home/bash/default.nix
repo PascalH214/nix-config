@@ -18,10 +18,6 @@
 
       ssh = "TERM=xterm ssh";
 
-      ls = "lsd";
-      ll = "lsd -l";
-      la = "lsd -la";
-
       ecmp = "f(){ 
         local file
         if [ -f docker-compose.yml ]; then

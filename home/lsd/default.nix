@@ -4,5 +4,7 @@
     recursive = true;
   };
 
-  home.packages = [ pkgs.lsd ];
+  programs.lsd = {
+    enable = true;
+  };
 }
