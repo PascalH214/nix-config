@@ -19,7 +19,6 @@
     ./oh_my_posh
     ./printers_scanners
     ./qt6ct
-    ./rofi
     ./systemd
     ./tmux
     ./vsCode
