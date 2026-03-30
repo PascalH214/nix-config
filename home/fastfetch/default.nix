@@ -1,4 +1,6 @@
 { pkgs, ... }: {
+  xdg.configFile."fastfetch/NixOS.txt".source = ./files/NixOS.txt;
+
   programs.fastfetch = {
     enable = true;
     settings = {
@@ -69,6 +71,4 @@
       ];
     };
   };
-
-  xdg.configFile."fastfetch/NixOS.txt".source = ./files/NixOS.txt;
 }
