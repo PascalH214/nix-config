@@ -11,10 +11,11 @@
 
     ./hardware-configuration.nix
 
-    ../../modules/displayManager/gdm
     ../../modules/desktopManager/gnome
-    ../../modules/tilingWindowManager/hyprland
+    ../../modules/displayManager/gdm
+    ../../modules/steam
     ../../modules/system
+    ../../modules/tilingWindowManager/hyprland
   ];
 
   boot.loader.systemd-boot.enable = true;
