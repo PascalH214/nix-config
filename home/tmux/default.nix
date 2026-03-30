@@ -6,29 +6,31 @@ in {
   programs.tmux = {
     enable = true;
     tmuxinator.enable = true;
+    prefix = "C-_";
+    mouse = true;
+    plugins = with pkgs; [
+      tmuxPlugins.better-mouse-mode
+      tmuxPlugins.sensible
+      {
+        plugin = tmuxPlugins.catppuccin;
+        extraConfig = ''
+          set -g @catppuccin_flavor 'mocha'
+          set -g @catppuccin_window_text "#W"
+          set -g @catppuccin_window_default_text "#W"
+          set -g @catppuccin_window_current_text "#W"
+        '';
+      }
+    ];
     extraConfig = ''
-      set-option -g mouse on
-      set-option -g prefix C-_
-
-      unbind C-b
-      unbind C-l
-
       bind -n C-h select-pane -L
       bind -n C-j select-pane -D
       bind -n C-k select-pane -U
+      unbind C-l
       bind -n C-l select-pane -R
 
       bind ? split-window -h "exec tmux list-keys | less"
 
-      set -g @plugin 'tmux-plugins/tpm'
-      set -g @plugin 'tmux-plugins/tmux-sensible'
       set -g @plugin 'b0o/tmux-autoreload'
-
-      set -g @plugin 'catppuccin/tmux#v2.1.3'
-      set -g @catppuccin_flavor 'mocha'
-      set -g @catppuccin_window_text "#W"
-      set -g @catppuccin_window_default_text "#W"
-      set -g @catppuccin_window_current_text "#W"
 
       set -g @plugin 'aserowy/tmux.nvim'
       set -g @tmux-nvim-navigation true
@@ -45,8 +47,6 @@ in {
       set -g @tmux-nvim-resize-keybinding-down 'M-j'
       set -g @tmux-nvim-resize-keybinding-up 'M-k'
       set -g @tmux-nvim-resize-keybinding-right 'M-l'
-
-      set -g @plugin 'nhdaly/tmux-better-mouse-mode'
 
       if "test ! -d ~/.config/tmux/plugins/tpm" \
         "run 'git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm && ~/.config/tmux/plugins/tpm/bin/install_plugins'"
