@@ -53,4 +53,8 @@ in {
         executable = true;
       };
     };
+
+  programs.hyprlock = {
+    enable = true;
+  };
 }
