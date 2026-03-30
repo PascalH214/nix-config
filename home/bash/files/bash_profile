@@ -1,0 +1,27 @@
+if command -v systemctl >/dev/null 2>&1; then
+    systemctl --user start ssh-agent.service >/dev/null 2>&1 || true
+    export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$UID}/ssh-agent.socket"
+else
+    SSH_ENV="$HOME/.ssh/agent-environment"
+
+    start_agent() {
+        /usr/bin/ssh-agent | sed 's/^echo/#echo/' >"$SSH_ENV"
+        chmod 600 "$SSH_ENV"
+        . "$SSH_ENV" >/dev/null
+    }
+
+    if [[ -f "$SSH_ENV" ]]; then
+        . "$SSH_ENV" >/dev/null
+        if ! kill -0 "${SSH_AGENT_PID:-}" >/dev/null 2>&1; then
+            start_agent
+        fi
+    else
+        start_agent
+    fi
+fi
+
+if command -v ssh-add >/dev/null 2>&1 && [[ -d "$HOME/.ssh" ]]; then
+    find "$HOME/.ssh" -type f -name "id_*" ! -name "*.pub" -exec ssh-add {} + >/dev/null 2>&1
+fi
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
