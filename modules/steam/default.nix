@@ -2,15 +2,6 @@
   username,
   ...
 }: {
-  boot = {
-    kernelParams = [
-      "quiet"
-      "splash"
-      "console=/dev/null"
-    ];
-    plymouth.enable = true;
-  };
-
   programs = {
     steam = {
       enable = true;
