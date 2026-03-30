@@ -17,6 +17,7 @@
   home.packages = with pkgs; [
     github-copilot-cli
     zoxide
+    ncpamixer
   ] ++ (with pkgsUnstable; [
     blesh
   ]);

@@ -6,11 +6,11 @@
   imports = [
     ./core.nix
     ./bash
+    ./chrome
     ./hyprland
     ./ags
     ./btop
     ./fastfetch
-    ./firefox
     ./gnome
     ./kitty
     ./Kvantum
