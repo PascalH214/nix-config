@@ -13,6 +13,7 @@
 
     ../../modules/desktopManager/gnome
     ../../modules/displayManager/gdm
+    ../../modules/gpu/amd
     ../../modules/steam
     ../../modules/system
     ../../modules/tilingWindowManager/hyprland
