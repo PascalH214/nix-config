@@ -18,6 +18,7 @@
     github-copilot-cli
     zoxide
     ncpamixer
+    discord
   ] ++ (with pkgsUnstable; [
     blesh
   ]);

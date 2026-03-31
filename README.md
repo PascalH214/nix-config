@@ -152,3 +152,26 @@ nix.gc = {
 * `home/hyprland/config/`: static Hyprland config files.
 * `home/hyprland/scripts/`: Hyprland helper scripts.
 * `home/vsCodium/default.nix`: VSCodium user configuration.
+
+
+## Update All Packages
+
+To update all packages (system and user-level):
+
+1. Update flake inputs (fetch latest package versions):
+
+```bash
+nix flake update
+```
+
+2. Rebuild and apply the system configuration (replace `nixos` with your host if needed):
+
+```bash
+sudo nixos-rebuild switch --flake '.?submodules=1#nixos'
+```
+
+3. (Optional) Update Home Manager user packages:
+
+```bash
+home-manager switch --flake '.?submodules=1#pascal'
+```
