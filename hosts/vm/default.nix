@@ -11,15 +11,12 @@
 
     ./hardware-configuration.nix
 
-    ../../modules/displayManager/gdm
+    ../../modules/bootloader/grub
     ../../modules/desktopManager/gnome
-    ../../modules/tilingWindowManager/hyprland
+    ../../modules/displayManager/gdm
     ../../modules/system
+    ../../modules/tilingWindowManager/hyprland
   ];
-
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
 
   nixpkgs.config.allowUnfree = true;
 

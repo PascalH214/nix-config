@@ -11,6 +11,7 @@
 
     ./hardware-configuration.nix
 
+    ../../modules/bootloader/grub
     ../../modules/desktopManager/gnome
     ../../modules/displayManager/gdm
     ../../modules/gpu/amd
@@ -18,9 +19,6 @@
     ../../modules/system
     ../../modules/tilingWindowManager/hyprland
   ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos";
 
