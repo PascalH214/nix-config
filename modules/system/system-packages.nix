@@ -9,5 +9,7 @@
     adw-gtk3
     gnome-themes-extra
     dconf
+    scrcpy
+    android-tools
   ];
 }

@@ -19,6 +19,7 @@
     ./oh_my_posh
     ./printers_scanners
     ./qt6ct
+    ./scrcpy
     ./systemd
     ./tmux
     ./vsCode
