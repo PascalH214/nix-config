@@ -1,4 +1,9 @@
-{ lib, hyprMainMod ? "SUPER", ... }: let
+{ 
+  lib,
+  hyprMainMod ? "SUPER",
+  username,
+  ...
+}: let
   configDir = ./config;
   configEntries = builtins.readDir configDir;
   topLevelConfigFiles = lib.filterAttrs (name: type: type == "regular" && name != "hyprland.conf") configEntries;
@@ -54,7 +59,9 @@ in {
       };
     };
 
-  programs.hyprlock = {
-    enable = true;
+  programs = {
+    hyprlock = {
+      enable = true;
+    };
   };
 }

@@ -58,6 +58,7 @@
                   hyprMainMod = "SUPER";
                   inherit inputs;
                   inherit pkgsUnstable;
+                  inherit username;
                 };
               home-manager.users.${username} = import ./users/${username}/home.nix;
             }
