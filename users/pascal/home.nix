@@ -19,6 +19,7 @@
     zoxide
     ncpamixer
     discord
+    feishin
   ] ++ (with pkgsUnstable; [
     blesh
   ]);
