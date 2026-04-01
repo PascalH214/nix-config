@@ -20,6 +20,7 @@
     ncpamixer
     discord
     feishin
+    bluetui
   ] ++ (with pkgsUnstable; [
     blesh
   ]);
