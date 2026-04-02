@@ -11,5 +11,15 @@
     dconf
     scrcpy
     android-tools
+    ripgrep
+    python3
+    luarocks
+    gcc
+    ghostscript
+    lazygit
+    fd
+    lua
+    wget
+    unzip
   ];
 }

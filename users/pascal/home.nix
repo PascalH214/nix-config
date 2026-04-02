@@ -5,6 +5,10 @@
 
   programs = {
     kitty.enable = true;
+    thunderbird = {
+      enable = true;
+      profiles.default.isDefault = true;
+    };
     git = {
       enable = true;
       settings.user = {
@@ -21,6 +25,9 @@
     discord
     feishin
     bluetui
+    impala
+    texliveSmall
+    mermaid-cli
   ] ++ (with pkgsUnstable; [
     blesh
   ]);
