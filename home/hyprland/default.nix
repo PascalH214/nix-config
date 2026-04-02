@@ -60,8 +60,7 @@ in {
     };
 
   programs = {
-    hyprlock = {
-      enable = true;
-    };
+    hyprlock.enable = true;
+    hyprshot.enable = true;
   };
 }
