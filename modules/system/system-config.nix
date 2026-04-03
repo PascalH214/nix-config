@@ -46,4 +46,6 @@
     pulse.enable = true;
     wireplumber.enable = true;
   };
+
+  virtualisation.docker.enable = true;
 }
