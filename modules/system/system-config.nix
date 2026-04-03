@@ -1,7 +1,7 @@
 { pkgs, lib, ... }: {
   networking = {
     networkmanager = {
-      enable = true;
+      enable = false;
       wifi.backend = "iwd";
     };
     wireless.enable = false; # disables wpa_supplicant
