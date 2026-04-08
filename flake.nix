@@ -65,6 +65,50 @@
           ];
         };
 
+      laptop = let
+        username = "pascal";
+        specialArgs = {inherit username;};
+        system = "x86_64-linux";
+        pkgsUnstable = import inputs."nixpkgs-unstable" {inherit system;};
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          inherit system;
+
+          modules = [
+            {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  nur = import inputs.nur {
+                    nurpkgs = prev;
+                    pkgs = prev;
+                  };
+                })
+              ];
+            }
+            ./hosts/nixos
+            ./users/${username}/nixos.nix
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "backup";
+
+              home-manager.extraSpecialArgs =
+                inputs //
+                specialArgs //
+                {
+                  hyprMainMod = "SUPER";
+                  inherit inputs;
+                  inherit pkgsUnstable;
+                  inherit username;
+                };
+              home-manager.users.${username} = import ./users/${username}/home.nix;
+            }
+          ];
+        };
+
       vm = let
         username = "pascal";
         specialArgs = {inherit username;};
