@@ -30,6 +30,8 @@
         fi
         $EDITOR \"$file\"
       }; f";
+
+      man = "man -P less";
     };
     bashrcExtra = builtins.concatStringsSep "\n" (map builtins.readFile [
       ./files/rc/10-env.sh

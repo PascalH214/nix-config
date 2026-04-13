@@ -22,5 +22,6 @@
     lua
     wget
     unzip
+    less
   ];
 }

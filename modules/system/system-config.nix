@@ -48,4 +48,6 @@
   };
 
   virtualisation.docker.enable = true;
+
+  environment.variables.PAGER = "less";
 }
