@@ -86,7 +86,7 @@
                 })
               ];
             }
-            ./hosts/nixos
+            ./hosts/laptop
             ./users/${username}/nixos.nix
 
             home-manager.nixosModules.home-manager
