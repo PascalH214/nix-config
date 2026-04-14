@@ -29,6 +29,7 @@
     texliveSmall
     mermaid-cli
     kind
+    kubectl
   ] ++ (with pkgsUnstable; [
     blesh
   ]);
