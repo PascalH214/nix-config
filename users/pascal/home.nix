@@ -28,6 +28,7 @@
     impala
     texliveSmall
     mermaid-cli
+    kind
   ] ++ (with pkgsUnstable; [
     blesh
   ]);
