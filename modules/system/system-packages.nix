@@ -23,5 +23,6 @@
     wget
     unzip
     less
+    distrobox
   ];
 }
