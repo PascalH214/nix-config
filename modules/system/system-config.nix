@@ -47,9 +47,12 @@
     wireplumber.enable = true;
   };
 
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
   };
 
   environment.variables.PAGER = "less";

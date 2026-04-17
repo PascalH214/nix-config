@@ -24,5 +24,6 @@
     unzip
     less
     distrobox
+    podman-compose
   ];
 }

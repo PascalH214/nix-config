@@ -6,7 +6,7 @@
       pascal = {
         isNormalUser = true;
         description = "pascal";
-        extraGroups = [ "networkmanager" "wheel" "adbusers" "docker" ];
+        extraGroups = [ "networkmanager" "wheel" "adbusers" "docker" "kvm" ];
         packages = with pkgs; [];
       };
     };
