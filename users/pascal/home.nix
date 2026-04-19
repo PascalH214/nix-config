@@ -11,9 +11,14 @@
     };
     git = {
       enable = true;
-      settings.user = {
-        name = "PascalH214";
-        email = "pascal02012004@freenet.de";
+      settings = {
+        init = {
+          defaultBranch = "main";
+        };
+        user = {
+          name = "PascalH214";
+          email = "pascal02012004@freenet.de";
+        };
       };
     };
   };

@@ -22,7 +22,5 @@
 
   networking.hostName = "nixos";
 
-  boot.kernelModules = [ "kvm-amd" ];
-
   system.stateVersion = "25.11";
 }

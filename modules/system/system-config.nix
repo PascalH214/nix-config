@@ -53,6 +53,12 @@
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };
+    libvirtd.enable = true;
+  };
+
+  programs = {
+    dconf.enable = true;
+    virt-manager.enable = true;
   };
 
   environment.variables.PAGER = "less";
