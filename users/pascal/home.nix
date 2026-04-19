@@ -39,7 +39,8 @@
     kind
     kubectl
     k9s
-    flux
+    fluxcd
+    kubernetes-helm
   ] ++ (with pkgsUnstable; [
     blesh
   ]);
