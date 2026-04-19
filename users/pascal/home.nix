@@ -38,6 +38,8 @@
     mermaid-cli
     kind
     kubectl
+    k9s
+    flux
   ] ++ (with pkgsUnstable; [
     blesh
   ]);
