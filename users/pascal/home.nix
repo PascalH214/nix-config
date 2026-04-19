@@ -15,6 +15,9 @@
         init = {
           defaultBranch = "main";
         };
+        push = {
+          autoSetupRemote = true;
+        };
         user = {
           name = "PascalH214";
           email = "pascal02012004@freenet.de";
