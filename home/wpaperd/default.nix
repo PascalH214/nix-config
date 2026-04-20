@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{config, ...}: {
   home.file.".wallpaper" = {
     source = ./wallpaper;
     recursive = true;
@@ -8,7 +8,7 @@
     enable = true;
     settings = {
       "re:.*" = {
-        path = "/home/pascal/.wallpaper/lake_ultrawide.png";
+        path = "${config.home.homeDirectory}/.wallpaper/lake_ultrawide.png";
       };
     };
   };

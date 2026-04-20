@@ -2,6 +2,22 @@
 
 NixOS + Home Manager configuration for host-specific systems and user-level dotfiles.
 
+## Layout
+
+- `flake.nix`: flake entry point and host wiring.
+- `hosts/`: host-specific NixOS configs (`nixos`, `laptop`, `vm`).
+- `modules/`: reusable NixOS modules shared across hosts.
+- `modules/system/system-config/`: focused system submodules for networking, locale, input, audio, virtualization, and desktop integration.
+- `modules/gpu/amd/`: AMD GPU system settings and tools such as `amdgpu_top`.
+- `home/`: reusable Home Manager modules and dotfiles.
+- `users/`: user entry points for NixOS and Home Manager (`users/pascal`).
+
+## Ownership rules
+
+- **System-level:** hardware, boot, networking, timezone, audio stack, virtualization, and GPU tools belong in `modules/` or `hosts/`.
+- **User-level:** shell, editor, app packages, themes, cursor settings, and user session variables belong in `home/` and `users/<name>/home.nix`.
+- **Host-specific values:** host tuning such as `hyprMainMod` is passed through `home-manager.extraSpecialArgs` in `flake.nix`.
+
 ## Clone
 
 Clone with submodules (required for `home/ags/config`):
@@ -17,16 +33,7 @@ If you already cloned without submodules:
 git submodule update --init --recursive
 ```
 
-## Hyprland Behavior
-
-`home/hyprland/default.nix` writes Hyprland files under `.config/hypr`.
-
-* Top-level config files from `home/hyprland/config` are linked.
-* `hyprland.conf` is generated from Nix so `$mainMod` can be set per host through `hyprMainMod` in `flake.nix`.
-* `home/hyprland/config/keybindings` is linked recursively.
-* `home/hyprland/scripts` is linked recursively and marked executable.
-
-## Apply Configuration
+## Apply configuration
 
 Update flake inputs first:
 
@@ -34,54 +41,27 @@ Update flake inputs first:
 nix flake update
 ```
 
-For your main host:
+Build and switch your main host:
 
 ```bash
 sudo nixos-rebuild switch --flake '.?submodules=1#nixos'
 ```
 
-For the VM host:
+Build and switch the VM host:
 
 ```bash
 sudo nixos-rebuild switch --flake '.?submodules=1#vm'
 ```
 
-## Garbage Collection (Delete Old Builds)
+## Short-lived builds
 
-Delete system generations older than a specified time:
-
-```bash
-sudo nix-collect-garbage --delete-older-than 7d
-```
-
-Delete Home Manager generations older than a specified time:
-
-```bash
-home-manager expire-generations "-7 days"
-```
-
-Run garbage collection to free space:
-
-```bash
-sudo nix-store --gc
-```
-
-## Short-Lived Builds for Testing
-
-Build and run without persistent system generation:
-
-```bash
-sudo nixos-rebuild build --flake '.?submodules=1#nixos' &&
-sudo ./result/bin/switch-to-configuration test
-```
-
-Build without creating a persistent system generation:
+Build without switching:
 
 ```bash
 sudo nixos-rebuild build --flake '.?submodules=1#nixos'
 ```
 
-Run the build temporarily (no boot entry created):
+Apply the built result temporarily:
 
 ```bash
 sudo ./result/bin/switch-to-configuration test
@@ -93,25 +73,18 @@ Build a flake output directly:
 nix build '.#nixosConfigurations.nixos.config.system.build.toplevel'
 ```
 
-Remove build result after testing:
+## Cleanup
+
+Delete old system generations:
 
 ```bash
-rm -rf result
+sudo nix-collect-garbage --delete-older-than 7d
 ```
 
-## Delete All Previous Builds Except Newest
-
-Delete all old system generations:
+Delete old Home Manager generations:
 
 ```bash
-sudo nixos-rebuild switch --flake '.?submodules=1#nixos'
-sudo nix-collect-garbage -d
-```
-
-Delete all old Home Manager generations:
-
-```bash
-home-manager expire-generations 0
+home-manager expire-generations "-7 days"
 ```
 
 Run garbage collection:
@@ -120,58 +93,10 @@ Run garbage collection:
 sudo nix-store --gc
 ```
 
-## Optional: Automatic Cleanup
-
-Add to NixOS configuration:
-
-```nix
-nix.gc = {
-  automatic = true;
-  dates = "weekly";
-  options = "--delete-older-than 7d";
-};
-```
-
 ## Notes
 
-* Host-specific values (for example `hyprMainMod`) are passed through `home-manager.extraSpecialArgs` in `flake.nix`.
-* User-level programs should live in Home Manager modules under `home/` and be imported by `users/<name>/home.nix`.
-
-## Structure
-
-* `flake.nix`: entry point and host outputs.
-* `hosts/`: host-specific NixOS config (`nixos`, `vm`).
-* `modules/`: reusable NixOS modules (bootloader, display manager, system, Hyprland enablement).
-* `users/`: user-level system and Home Manager entry files.
-* `home/`: Home Manager modules and dotfiles.
-
-## Home Manager Layout
-
-* `home/core.nix`: base user settings.
-* `home/hyprland/default.nix`: deploys Hyprland config and scripts.
-* `home/hyprland/config/`: static Hyprland config files.
-* `home/hyprland/scripts/`: Hyprland helper scripts.
-* `home/vsCodium/default.nix`: VSCodium user configuration.
-
-
-## Update All Packages
-
-To update all packages (system and user-level):
-
-1. Update flake inputs (fetch latest package versions):
-
-```bash
-nix flake update
-```
-
-2. Rebuild and apply the system configuration (replace `nixos` with your host if needed):
-
-```bash
-sudo nixos-rebuild switch --flake '.?submodules=1#nixos'
-```
-
-3. (Optional) Update Home Manager user packages:
-
-```bash
-home-manager switch --flake '.?submodules=1#pascal'
-```
+- `home/hyprland/default.nix` writes Hyprland files under `.config/hypr`.
+- `home/hyprland/config/keybindings` and `home/hyprland/scripts` are linked recursively.
+- `home/hyprland/scripts` is marked executable.
+- `home-manager.users.pascal` is imported from `users/pascal/home.nix`.
+- `users/pascal/nixos.nix` contains the normal user definition and system user-group membership.

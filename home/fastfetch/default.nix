@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{config, ...}: {
   xdg.configFile."fastfetch/NixOS.txt".source = ./files/NixOS.txt;
 
   programs.fastfetch = {
@@ -6,7 +6,7 @@
     settings = {
       schema = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
       logo = {
-        source = "/home/pascal/.config/fastfetch/NixOS.txt";
+        source = "${config.xdg.configHome}/fastfetch/NixOS.txt";
         padding = {
           right = 3;
           bottom = 2;
@@ -16,9 +16,9 @@
         separator = " ";
       };
       modules = [
-	      "break"
-	      "break"
-	      {
+        "break"
+        "break"
+        {
           type = "title";
           keyWidth = 10;
         }

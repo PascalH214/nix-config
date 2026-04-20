@@ -1,66 +1,10 @@
-{ pkgs, lib, ... }: {
-  networking = {
-    networkmanager = {
-      enable = false;
-      wifi.backend = "iwd";
-    };
-    wireless.enable = false; # disables wpa_supplicant
-    wireless.iwd = {
-      enable = true;
-      settings = {
-        Settings = {
-          AutoConnect = true;
-        };
-      };
-    };
-  };
-
-  time.timeZone = "Europe/Berlin";
-
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
-  };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
-  };
-
-  virtualisation = {
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true;
-    };
-    libvirtd.enable = true;
-    waydroid.enable = true;
-  };
-
-  programs = {
-    dconf.enable = true;
-    virt-manager.enable = true;
-  };
-
-  environment.variables.PAGER = "less";
+{
+  imports = [
+    ./system-config/networking.nix
+    ./system-config/locale.nix
+    ./system-config/xkb.nix
+    ./system-config/audio.nix
+    ./system-config/virtualization.nix
+    ./system-config/desktop.nix
+  ];
 }

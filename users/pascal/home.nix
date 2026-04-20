@@ -1,7 +1,13 @@
-{pkgs, pkgsUnstable, inputs, ...}: {
+{pkgs, pkgsUnstable, ...}: {
   imports = [
     ../../home
   ];
+
+  fonts.fontconfig.enable = true;
+
+  home.sessionVariables = {
+    PAGER = "less";
+  };
 
   programs = {
     kitty.enable = true;
@@ -27,6 +33,29 @@
   };
 
   home.packages = with pkgs; [
+    nerd-fonts._0xproto
+    git
+    nodejs_24
+    nil
+    adw-gtk3
+    gnome-themes-extra
+    dconf
+    scrcpy
+    android-tools
+    ripgrep
+    python3
+    luarocks
+    gcc
+    ghostscript
+    lazygit
+    fd
+    lua
+    wget
+    unzip
+    less
+    distrobox
+    podman-compose
+    openrazer-daemon
     github-copilot-cli
     zoxide
     ncpamixer
