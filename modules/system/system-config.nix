@@ -54,6 +54,7 @@
       defaultNetwork.settings.dns_enabled = true;
     };
     libvirtd.enable = true;
+    waydroid.enable = true;
   };
 
   programs = {

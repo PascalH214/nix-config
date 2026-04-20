@@ -7,7 +7,6 @@
     ./core.nix
     ./bash
     ./chrome
-    ./distrobox
     ./hyprland
     ./ags
     ./btop
