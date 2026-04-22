@@ -1,4 +1,9 @@
 { ... }: {
+  services.openiscsi = {
+    enable = true;
+    name = "iqn.2026-04.local:storage";
+  };
+
   virtualisation = {
     podman = {
       enable = true;
