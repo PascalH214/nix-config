@@ -32,6 +32,8 @@
       }; f";
 
       man = "man -P less";
+
+      gemini = "npx @google/gemini-cli";
     };
     bashrcExtra = builtins.concatStringsSep "\n" (map builtins.readFile [
       ./files/rc/10-env.sh
